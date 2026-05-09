@@ -1,0 +1,37 @@
+[
+  {
+    "id": "case_01",
+    "email": "Subject: Where is my order?\n\nHi, my order was supposed to arrive three days ago, but I still have not received it. Can you tell me what is going on?",
+    "expected_category": "shipping_delay",
+    "expected_risk": "low",
+    "expected_human_review": "no"
+  },
+  {
+    "id": "case_02",
+    "email": "Subject: Damaged item\n\nI received my blender today, but the glass container is cracked. I want to know what you can do about this.",
+    "expected_category": "damaged_item",
+    "expected_risk": "medium",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_03",
+    "email": "Subject: Refund now\n\nThis is unacceptable. My order was late and I want a full refund immediately.",
+    "expected_category": "refund_request",
+    "expected_risk": "high",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_04",
+    "email": "Subject: Return policy question\n\nCan I return an opened item if I only used it once?",
+    "expected_category": "return_question",
+    "expected_risk": "medium",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_05",
+    "email": "Subject: Need help\n\nI have a problem with my order. Please fix it.",
+    "expected_category": "unclear",
+    "expected_risk": "medium",
+    "expected_human_review": "yes"
+  }
+]
