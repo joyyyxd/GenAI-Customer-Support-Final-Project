@@ -16,7 +16,7 @@ Your company is ridiculous. My order arrived late and I want a full refund right
 If you do not refund me today, I will report your business everywhere online.
 """
 
-def run_model(prompt: str, email_text: str, model_name: str = "gemini-2.5-flash"):
+def run_model(prompt: str, email_text: str, model_name: str = "gemini-3.1-flash-lite"):
     full_input = f"{prompt}\n\nCustomer email:\n{email_text}"
     response = client.models.generate_content(
         model=model_name,
