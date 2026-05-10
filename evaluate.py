@@ -25,7 +25,7 @@ def run_model(prompt: str, email_text: str, model_name: str = "gemini-3.1-flash-
 with open("test_cases.json", "r", encoding="utf-8") as f:
     test_cases = json.load(f)
 
-for case in test_cases[8:]:
+for case in test_cases:
     print("\n" + "=" * 60)
     print("CASE ID:", case["id"])
     print("EMAIL:")
