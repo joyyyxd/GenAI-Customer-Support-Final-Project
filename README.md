@@ -1,28 +1,120 @@
-# GenAI HW2: Build and Evaluate a Simple GenAI Workflow
+# Customer Support Reply Draft Assistant for Small Online Stores
 
-This project uses the Google AI Studio Gemini API to generate first-draft customer support replies. It includes a small evaluation set, prompt revisions, a working Python prototype, and a short report on performance and deployment limits.
+## 1. Context, user, and problem
 
-## Chosen Workflow
-Drafting customer support email responses for a small online store called BrightCart.
+This project is a small GenAI workflow for small online store owners or customer support staff who need to respond to customer emails quickly and professionally.
 
-## User
-The user is a customer support assistant who handles common customer emails.
+The workflow focuses on one narrow task: drafting a first-response customer support email. The user runs the script with a customer email example as input, and the system generates a draft reply. In the improved version, the system also identifies the issue category, assigns a risk level, and indicates whether the case should be reviewed by a human.
 
-## Input
-The system receives a customer email describing an order-related issue, such as delayed shipping, a damaged product, the wrong item, or a refund request.
+This problem matters because small stores often do not have large support teams. Writing customer replies takes time, and poorly worded replies can create business risk, especially for refund requests, damaged-item complaints, or emotionally charged messages.
 
-## Output
-The system produces a polite and professional first-draft email response. The response should acknowledge the issue, provide a helpful next step, and maintain a consistent customer support tone.
+## 2. Solution and design
 
-## Why This Task Is Valuable
-This workflow is repetitive and depends heavily on written communication. A GenAI system can save time by creating a first draft for common support cases. However, higher-risk situations still require human review.
+This project includes two versions of the workflow:
 
-## Repository Files
-- `README.md`
-- `app.py`
-- `prompts.md`
-- `eval_set.md`
-- `report.md`
+### Baseline
+The baseline is a simple prompt-only email drafting system. It takes the customer email and generates a polite customer support reply.
 
-## Video Link
-[Present Video](https://youtu.be/ggoTQm15RUo)
+### Improved system
+The improved system uses a more structured prompt. It returns:
+- issue category
+- risk level
+- human review recommendation
+- reply draft
+
+The improved system is designed to be safer and more useful for customer support workflows. It is instructed not to invent order details, not to promise refunds automatically, and to recommend human review for riskier messages.
+
+### Files
+- `app.py` - runs a sample customer email through the baseline and improved workflows
+- `prompts.py` - stores the baseline and improved prompts
+- `evaluate.py` - runs evaluation cases
+- `test_cases.json` - synthetic customer support test cases
+- `outputs/eval_results.txt` - saved evaluation outputs
+
+## 3. Evaluation and results
+
+I evaluated the system using synthetic customer support emails in `test_cases.json` that cover several common cases, including:
+- shipping delay
+- damaged item
+- refund request
+- return question
+- unclear request
+
+The baseline and improved versions were compared on the same workflow. The improved version was designed to provide more structured and safer outputs by explicitly classifying issue type, assigning risk, and recommending human review when appropriate.
+
+The evaluation outputs are saved in:
+- `outputs/eval_results.txt`
+
+### What worked
+- The system generated polite and relevant customer support replies
+- The improved version produced structured outputs
+- The improved version handled refund and damaged-item cases more carefully than the baseline
+- The workflow is narrow and realistic for a small business use case
+
+### What failed or remained limited
+- Free-tier API quota limits made large-batch evaluation difficult
+- The model sometimes classified medium-risk cases conservatively
+- The project does not connect to real order systems or store policies
+- The reply is still a draft and should not be sent without human review
+
+### Human involvement
+A human should always review the final email before sending it. The system is meant to help draft replies, not make final refund, return, or compensation decisions.
+
+## 4. Artifact snapshot
+
+This repository contains a working Python-based GenAI workflow for customer support email drafting.
+
+Main evidence included in the repo:
+- runnable code in `app.py`
+- evaluation script in `evaluate.py`
+- test cases in `test_cases.json`
+- saved outputs in `outputs/eval_results.txt`
+
+## 5. Setup and usage
+
+### Requirements
+Install dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+### (Optional) Create and activate a virtual environment before installing dependencies.
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### API key
+
+Set your Gemini API key as an environment variable before running the scripts.
+
+PowerShell:
+
+```bash
+$env:GEMINI_API_KEY="YOUR_API_KEY"
+```
+
+### Run the sample app
+
+```bash
+python app.py
+```
+
+### Run evaluation
+
+The evaluation script can be run in smaller batches if API free-tier quota limits are reached.
+
+```bash
+python evaluate.py
+```
+
+## 6. Notes
+
+- This project uses synthetic example customer emails only
+- No real customer data, secrets, or private order data are included
+- The system is intended as a drafting assistant, not a fully automated support system
+- Free-tier Gemini API rate limits may require running evaluation in smaller batches
+- This system should not be used to make final refund, return, or compensation decisions without human review.
