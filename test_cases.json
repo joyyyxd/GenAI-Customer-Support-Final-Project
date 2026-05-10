@@ -8,27 +8,62 @@
   },
   {
     "id": "case_02",
+    "email": "Subject: Late shipment update\n\nHello, my package has been delayed for almost a week and I have not gotten any shipping updates. Please let me know when I can expect it.",
+    "expected_category": "shipping_delay",
+    "expected_risk": "medium",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_03",
     "email": "Subject: Damaged item\n\nI received my blender today, but the glass container is cracked. I want to know what you can do about this.",
     "expected_category": "damaged_item",
     "expected_risk": "medium",
     "expected_human_review": "yes"
   },
   {
-    "id": "case_03",
+    "id": "case_04",
+    "email": "Subject: Broken product on arrival\n\nThe lamp I ordered arrived today, but it does not turn on at all. I am very disappointed and need help with this issue.",
+    "expected_category": "damaged_item",
+    "expected_risk": "medium",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_05",
     "email": "Subject: Refund now\n\nThis is unacceptable. My order was late and I want a full refund immediately.",
     "expected_category": "refund_request",
     "expected_risk": "high",
     "expected_human_review": "yes"
   },
   {
-    "id": "case_04",
+    "id": "case_06",
+    "email": "Subject: Requesting a refund\n\nI would like to request a refund because the item I received does not match what I expected. Please let me know what the next step is.",
+    "expected_category": "refund_request",
+    "expected_risk": "high",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_07",
     "email": "Subject: Return policy question\n\nCan I return an opened item if I only used it once?",
     "expected_category": "return_question",
     "expected_risk": "medium",
     "expected_human_review": "yes"
   },
   {
-    "id": "case_05",
+    "id": "case_08",
+    "email": "Subject: Wrong item received\n\nI ordered a blue backpack, but I received a black one instead. Please let me know how this can be fixed.",
+    "expected_category": "wrong_item",
+    "expected_risk": "medium",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_09",
+    "email": "Subject: Terrible service\n\nI have emailed twice already and nobody helped me. If this is not fixed soon, I am going to leave negative reviews everywhere.",
+    "expected_category": "unclear",
+    "expected_risk": "high",
+    "expected_human_review": "yes"
+  },
+  {
+    "id": "case_10",
     "email": "Subject: Need help\n\nI have a problem with my order. Please fix it.",
     "expected_category": "unclear",
     "expected_risk": "medium",

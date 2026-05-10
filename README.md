@@ -33,12 +33,14 @@ The improved system is designed to be safer and more useful for customer support
 
 ## 3. Evaluation and results
 
-I evaluated the system using synthetic customer support emails in `test_cases.json` that cover several common cases, including:
+I evaluated the system using 10 synthetic customer support emails in `test_cases.json`. These cases cover several common situations, including:
 - shipping delay
 - damaged item
 - refund request
 - return question
-- unclear request
+- wrong item
+- unclear or incomplete request
+- angry complaint
 
 The baseline and improved versions were compared on the same workflow. The improved version was designed to provide more structured and safer outputs by explicitly classifying issue type, assigning risk, and recommending human review when appropriate.
 
