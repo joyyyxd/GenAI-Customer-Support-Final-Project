@@ -1,3 +1,7 @@
+# Note:
+# If free-tier API quota is limited, evaluation can be run in smaller batches
+# by changing the slice in the loop below, such as test_cases[:3] or test_cases[3:].
+
 import json
 import os
 from google import genai
