@@ -9,6 +9,7 @@ The workflow focuses on one narrow task: drafting a first-response customer supp
 This problem matters because small stores often do not have large support teams. Writing customer replies takes time, and poorly worded replies can create business risk, especially for refund requests, damaged-item complaints, or emotionally charged messages.
 
 ## 2. Solution and design
+I built a small command-line tool for drafting first-response customer support emails. The user provides a customer support email as input. In the baseline version, the tool returns a simple draft reply. In the improved version, it returns a structured response with issue category, risk level, human review recommendation, and reply draft.
 
 This project includes two versions of the workflow:
 
@@ -16,7 +17,9 @@ This project includes two versions of the workflow:
 The baseline is a simple prompt-only email drafting system. It takes the customer email and generates a polite customer support reply.
 
 ### Improved system
-The improved system uses a more structured prompt. It returns:
+The improved system uses a more structured prompt. The main GenAI design choices were structured output, safer prompting, and human review for risky cases.
+
+It returns:
 - issue category
 - risk level
 - human review recommendation
@@ -33,7 +36,7 @@ The improved system is designed to be safer and more useful for customer support
 
 ## 3. Evaluation and results
 
-I evaluated the system using 10 synthetic customer support emails in `test_cases.json`. These cases cover several common situations, including:
+I evaluated the system using 10 synthetic customer support emails in `test_cases.json`. These test cases cover several common situations, including:
 - shipping delay
 - damaged item
 - refund request
@@ -47,6 +50,12 @@ The baseline and improved versions were compared on the same workflow. The impro
 The evaluation outputs are saved in:
 - `outputs/eval_results.txt`
 
+### Criteria
+I compared the improved system against the prompt-only baseline. I mainly evaluated whether: 
+- the outputs were structured
+- the outputs were relevant to the customer issue
+- the outputs were more careful in risky case
+
 ### What worked
 - The system generated polite and relevant customer support replies
 - The improved version produced structured outputs
@@ -59,12 +68,25 @@ The evaluation outputs are saved in:
 - The project does not connect to real order systems or store policies
 - The reply is still a draft and should not be sent without human review
 
+### What I found
+
+Overall, the improved version produced more structured outputs and handled risky cases more carefully than the baseline, although free-tier API limits required some evaluation runs to be completed in smaller batches.
+
 ### Human involvement
 A human should always review the final email before sending it. The system is meant to help draft replies, not make final refund, return, or compensation decisions.
 
 ## 4. Artifact snapshot
 
-This repository contains a working Python-based GenAI workflow for customer support email drafting.
+This repository contains a working Python-based command-line tool for customer support email drafting.
+
+Sample input:
+- Customer email: "My order was supposed to arrive three days ago, but I still have not received it."
+
+Sample improved output:
+- issue category: shipping_delay
+- risk level: low
+- human review needed: no
+- reply draft: a polite customer support response asking for the order number and explaining that the team will investigate the shipment
 
 Main evidence included in the repo:
 - runnable code in `app.py`
@@ -93,9 +115,11 @@ pip install -r requirements.txt
 
 Set your Gemini API key as an environment variable before running the scripts.
 
+```markdown
 PowerShell:
+```
 
-```bash
+```powershell
 $env:GEMINI_API_KEY="YOUR_API_KEY"
 ```
 
@@ -120,3 +144,6 @@ python evaluate.py
 - The system is intended as a drafting assistant, not a fully automated support system
 - Free-tier Gemini API rate limits may require running evaluation in smaller batches
 - This system should not be used to make final refund, return, or compensation decisions without human review.
+
+## 7. Lightning Presentation
+[Slide Link](https://canva.link/7oj1tzbqrprmshv)
