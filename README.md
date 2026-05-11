@@ -115,10 +115,6 @@ pip install -r requirements.txt
 
 Set your Gemini API key as an environment variable before running the scripts.
 
-```markdown
-PowerShell:
-```
-
 ```powershell
 $env:GEMINI_API_KEY="YOUR_API_KEY"
 ```
